@@ -1,0 +1,8 @@
+eclipse.preferences.version=1
+encoding//src/classifier/bayes/NaiveBayes.py=utf-8
+encoding//src/classifier/bayes/constants.py=utf-8
+encoding//src/classifier/crossvalidator/KFoldCrossValidator.py=utf-8
+encoding//src/fileAssembler/FileAssembler.py=utf-8
+encoding//src/fileAssembler/constants.py=utf-8
+encoding//src/fileGenerator.py=utf-8
+encoding//src/teste.py=utf-8

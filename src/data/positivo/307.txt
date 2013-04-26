@@ -1,0 +1,1 @@
+O contra-exemplo acima sugere que, para que uma coleção de subconjuntos de X seja uma base para alguma topologia de X, basta satisfazer as seguintes propriedades:É fácil mostrar que as duas definições são equivalentes.Note-se que qualquer coleção de conjuntos é a sub-base de alguma topologia.

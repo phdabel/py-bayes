@@ -1,0 +1,1 @@
+Dinâmica de corpo rígido (ou 'Mecânica de sólido rígido'), do inglês Rigid body dynamics, é a parte da mecânica que estuda o movimento e equilíbrio de corpos rígidos (sólidos), ignorando suas deformações.

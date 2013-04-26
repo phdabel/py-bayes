@@ -1,0 +1,1 @@
+O Teorema do ponto fixo de Schauder é uma generalização do teorema do ponto fixo de Brouwer. Enquanto o teorema de Brouwer se aplica a espaços euclidianos, o teorema de Schauder vale em espaços de Banach.

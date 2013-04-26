@@ -1,0 +1,1 @@
+A Mecânica de Lagrange tem a vantagem de resolver elegantemente problemas complexos, sendo um bom exemplo do grau de abstração embutido no formalismo de Lagrange a simplicidade com que podemos deduzir as Leis de Conservação a partir das simetrias do espaço-tempo. Deixa-se, aqui, a título de exemplo, a dedução da Conservação do Momento Linear:

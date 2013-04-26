@@ -1,0 +1,1 @@
+A , B: representam os módulos dos vetores correspondentes.

@@ -1,0 +1,1 @@
+Ramo de estudo intimamente ligado com educação matemática que tenta descobrir quais são os axiomas e as definições mais elementares da matemática, e que regras de inferência são aceitáveis ao se trabalhar com tais axiomas.Suas principais vertentes são

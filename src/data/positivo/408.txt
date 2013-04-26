@@ -1,0 +1,1 @@
+Em Engenharia Elétrica, admitância, simbolizada Y, é o inverso da impedância. Ele é medida S (siemens).Onde :Sendo a impedância uma resistência complexa, e a condutância G o inverso da resistência, a admitância é uma condutância complexa.Onde :

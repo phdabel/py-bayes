@@ -1,0 +1,1 @@
+A Distribuição de Bernoulli é a distribuição discreta de espaço amostral {0, 1}, com probabilidades P(0) = 1 - p e P(1) = p. O nome da distribuição se refere ao cientista suiço Jakob Bernoulli.

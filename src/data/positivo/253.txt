@@ -1,0 +1,1 @@
+A Análise Fatorial é uma técnica da estatística destinada à representar um processo aleatório multi-variado por meio da criação de novas variáveis, derivadas das variáveis originais e, geralmente, em menor número, que representa as comunalidades  do processo restando às variáveis espúrias serem não descritas pelo modelo fatorial.

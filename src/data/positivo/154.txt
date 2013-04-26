@@ -1,0 +1,1 @@
+Para representar o conjunto dos racionais positivos podemos usar Q + e para representar o conjunto dos números racionais negativos podemos utilizar Q-. O número zero também faz parte do conjunto dos racionais.nesta notação os números entre parênteses repetem-se ao infinito.

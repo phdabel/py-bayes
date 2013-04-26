@@ -1,0 +1,1 @@
+Em física, liberdade assintótica é a propriedade de algumas teorias de gauge na qual a interação entre as partículas, tais como os quarks, se tornam arbitrariamente fracas em pequenas distâncias, isto é, escalas de distâncias que assintoticamente convergem a zero (ou, equivalentemente, escalas de energias que se tornam arbitrariamente grande).

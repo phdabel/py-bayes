@@ -1,0 +1,1 @@
+Quanto maior o chi-quadrado, mais significante é a relação entre a variável dependente e a variável independente.Este valor está relacionado com uma distribuição, chamada Distribuição Chi-Quadrado.

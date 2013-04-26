@@ -1,0 +1,1 @@
+Continuidade uniforme é um importante conceito matemático com numerosas aplicação sobretudo na análise real e na análise funcional.Grosseiramente falando, uma função é dita contínua se suficientemente pequenas variações no domínio resultem em pequenas variações na imagem. Uma função é dita uniformemente contínua se "suficientemente pequeno" for independente do ponto inicial.

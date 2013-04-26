@@ -1,0 +1,1 @@
+A distribuição F de Fisher-Snedecor, mais conhecida como distribuição F de Fisher (em honra a Ronald Fisher) ou distribuição F de Snedecor (em honra a George W. Snedecor) mede a razão entre duas chi quadrado independentes.

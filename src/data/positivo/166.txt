@@ -1,0 +1,1 @@
+A subtração é o mesmo que a adição por um número de sinal inverso. É, portanto, a operação inversa da adição.

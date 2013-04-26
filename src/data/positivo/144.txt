@@ -1,0 +1,1 @@
+Em topologia, um conjunto diz-se aberto se uma pequena variação de um ponto desse conjunto mantém-no no conjunto.Em topologia, a noção de aberto é primitiva: uma topologia T em um conjunto X é definida como um subconjunto do conjunto das partes de X (satisfazendo determinadas propriedades), e cada elemento de T é chamado de um aberto ou conjunto aberto.

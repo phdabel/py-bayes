@@ -1,0 +1,1 @@
+neste caso a curtose da normal é 3.A curtose não tem limite superior (ou seja, existem distribuições com curtose tão alta quanto se queira), porém seu limite inferior é -2, na Bernoulli com p = 1/2.

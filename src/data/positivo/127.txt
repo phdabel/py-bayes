@@ -1,0 +1,1 @@
+Em matemática, um {PEPB|espaço normado|espaço normalizado} é um espaço vetorial com uma norma.

@@ -1,0 +1,1 @@
+Em topologia, um espaço topológico diz-se grosseiro se os seus únicos abertos são o conjunto vazio e o próprio X.Um espaço grosseiro:

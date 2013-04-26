@@ -1,0 +1,1 @@
+OBS.: A distribuição Geométrica e fortemente relacionada com a Binomial negativa. Na Geométrica queremos o número de tentativas para obter o primeiro sucesso, ou seja, o tempo de espera até que se tenha o evento de importância ou sucesso.

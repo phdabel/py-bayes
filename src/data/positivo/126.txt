@@ -1,0 +1,1 @@
+Note-se, em particular, que as bolas abertas são conjuntos abertos, e essa topologia é Hausdorff.

@@ -1,0 +1,1 @@
+Varredura diferencial de calorimetria, ou differential scanning calorimeter em inglês, é um tipo de análise térmica na qual  amostra e referência ficam submetidas a um calorímetro diferencial, que realiza uma medida exata do calor de transição entre esses materiais, independente do calor específico, condutividade térmica e outras variáveis da amostra..

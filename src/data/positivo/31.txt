@@ -1,0 +1,1 @@
+95Tc | isótopo2_hardons           = 96 | isótopo2_abundância        = sintético | isótopo2_semi_vida         = 4,3 d | isótopo2_decaimento        = ε

@@ -1,0 +1,1 @@
+é conexo. Este é o contra-exemplo padrão de um espaço conexo que não é conexo por arcos.

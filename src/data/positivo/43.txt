@@ -1,0 +1,1 @@
+Em matemática, associatividade é uma propriedade de operações binárias que diz respeito ao comportamento da operação, quando realizada em seqüência sobre os elementos do conjunto. Uma operação é dita associativa quando a ordem pela qual agrupamos as operações, quando ela aparece mais de uma vez em uma expressão, é irrelevante.

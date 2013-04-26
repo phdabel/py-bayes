@@ -1,0 +1,1 @@
+Em matemática, a função inclusão é uma função que dá como imagem de cada objecto o próprio objecto. Quando o domínio coincide com o contradomínio chama-se função identidade.Gráficamente sendo representado pelo conjuto dos pontos ordenados onde x=y, eixo ao qual são simétricas as funções e suas respectivas inversas.

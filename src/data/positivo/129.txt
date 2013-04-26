@@ -1,0 +1,1 @@
+Em matemática, define-se como função real qualquer função cujo contra-domínio está contido no conjunto dos números reais.

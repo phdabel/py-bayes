@@ -1,0 +1,1 @@
+Em mecânica clássica, um corpo rígido é definido como um conjunto finito, de N  partículas de massas mi e posições ri  (i=1,N), tal que a distância entre duas partículas i e j, |ri-rj|,  é constante no tempo. Em outras palavras, um corpo rígido é uma "nuvem" de partículas cuja distância entre elas não muda no tempo.

@@ -1,0 +1,1 @@
+A unicidade segue diretamente do teorema anterior.Está, portanto, demonstrado o Teorema Fundamental da Aritmética.
