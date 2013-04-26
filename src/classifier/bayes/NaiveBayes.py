@@ -12,8 +12,6 @@ import math
 class NaiveBayes(object):
     '''
         instancias: array contendo todas as instancias de acordo com o arquivo nbf
-        instanciasByClass: dicionario das instancias dividias pelas classes
-            para facilitar o crossValidation
         classes: dicionario contendo todas as classes existentes no arquivo nbf
             com os totais (total) e a probabilidade a priori delas (prob) = p(v)
         totalInstances: total de instancias
@@ -24,7 +22,6 @@ class NaiveBayes(object):
         estimator: define um estimador para o calculo da probabilidade default None
     '''
     instancias = []
-    instanciasByClass = {}
     classes = {}
     totalInstances = 0
     attributes = {}
@@ -33,8 +30,8 @@ class NaiveBayes(object):
     estimator = None
     
     
-    def __init__(self):
-        self.__defineInstances__()
+    def __init__(self, instancias=None):
+        self.__defineInstances__(instancias)
         self.__classProbability__()
         self.__attributesProbability__()
         self.__getAttributes__()
@@ -43,18 +40,13 @@ class NaiveBayes(object):
         Metodo privado da classe
         define as instancias contidas no arquivo para a variavel instancias da Classe NayveBayes.
     '''    
-    def __defineInstances__(self):
-        for line in FileAssembler.readDataFile(FileAssembler).readlines():
-            self.instancias.append(eval(line))
-        tmp = ""
-        ct = 0
-        for i in self.instancias:
-            if(i[1][0]!=tmp):
-                tmp = i[1][0]
-                self.instanciasByClass[tmp] = {}
-            self.instanciasByClass[tmp][str(ct)] = i[0]
-            ct = ct +1
-            
+    def __defineInstances__(self, instancias=None):
+        if(instancias == None):
+            for line in FileAssembler.readDataFile(FileAssembler).readlines():
+                self.instancias.append(eval(line))
+        else:
+            self.instancias = instancias
+
     '''
         define as probabilidades das classes e armazena no vetor classes
         prob(v) -> self.classes[v]['prob']
