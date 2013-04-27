@@ -27,7 +27,8 @@ class KFoldCrossValidator(object):
         Constructor
         '''
         self.setK(k)
-        self.kFoldInstances = [[]]*k
+        for i in range(0, self.k):
+            self.kFoldInstances.append([])
         self.__defineInstances__()
     
     '''
@@ -69,15 +70,33 @@ class KFoldCrossValidator(object):
     a instancia k e utilizada para teste 
     '''
     def __divideInstances__(self):
+        '''
+            essa parte calcula quantas amostras cada k-fold deve possuir
+            e monta variaveis de apoio
+        '''
         length = []
+        count = []
+        for i in range(0, self.k):
+            count.append(0)
+        ktmp = 0
+        '''
+           calculo do numero de amostras, proporcao por k-fold 
+        '''
         for c in self.instanciasByClass:
+            count.append(0)
             length.append(float(len(self.instanciasByClass[c]))/self.k)
-        for ktmp in range(0,self.k):
-            countRemove = 0
-            countClass = 0
-            for c in self.instanciasByClass:
-                while countRemove < length[countClass]:
-                    self.kFoldInstances[ktmp].append([self.instanciasByClass[c].popitem()[1],[str(c)]])
-                    countRemove = countRemove + 1
-                countClass = countClass + 1
-                countRemove = 0
+        countClass = 0
+        '''
+            montagem das amostras em cada k-fold
+        '''
+        for c in self.instanciasByClass:
+            for i in self.instanciasByClass[c]:
+                if count[countClass] < length[countClass]:
+                    self.kFoldInstances[ktmp].append([self.instanciasByClass[c][i],[str(c)]])
+                    #print "fold %d, classe - %s, amostra - %s"%(ktmp,c,self.instanciasByClass[c][i])
+                    count[countClass] = count[countClass] + 1
+                else:
+                    ktmp = ktmp + 1
+                    count[countClass] = 0
+            ktmp = 0
+            countClass = countClass + 1
