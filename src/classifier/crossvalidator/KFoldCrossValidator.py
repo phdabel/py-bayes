@@ -30,6 +30,7 @@ class KFoldCrossValidator(object):
         for i in range(0, self.k):
             self.kFoldInstances.append([])
         self.__defineInstances__()
+        self.__divideInstances__()
     
     '''
     Ajusta o valor de k, por padrao 10
@@ -100,3 +101,10 @@ class KFoldCrossValidator(object):
                     count[countClass] = 0
             ktmp = 0
             countClass = countClass + 1
+    
+    
+    '''
+        Montar Matriz de Confusao
+    '''
+    def __confusionMatrix__():
+        

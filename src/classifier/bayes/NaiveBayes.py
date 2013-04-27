@@ -133,3 +133,5 @@ class NaiveBayes(object):
         m = len(self.vocabularySize)
         return ((nkj)+(1.0))/(nj+m)
         #return ((nkj)+(((1.0)/len(self.attributes[someClass]))*m))/((nj)+(m))
+    
+    
