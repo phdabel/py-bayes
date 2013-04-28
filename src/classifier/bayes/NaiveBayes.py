@@ -128,10 +128,47 @@ class NaiveBayes(object):
         retorna a probabilidade de um atributo dado uma classe
     '''
     def probWithEstimator(self, someAttribute, someClass):
-        nkj = self.attributes[someClass][someAttribute]['total']
+        if self.attributes[someClass].has_key(someAttribute):
+            nkj = self.attributes[someClass][someAttribute]['total']
+        else:
+            nkj = 0
         nj = self.classes[someClass]['total']
         m = len(self.vocabularySize)
         return ((nkj)+(1.0))/(nj+m)
         #return ((nkj)+(((1.0)/len(self.attributes[someClass]))*m))/((nj)+(m))
     
-    
+    '''
+        probabilidade de uma classe dado um attributo
+    '''
+    def probClassGivenAttribute(self, someClass, someAttribute):
+        pAtCl = self.probWithEstimator(someAttribute, someClass)
+        '''
+        probabilidade a priori do attribute
+        '''
+        pAtPriori = self.probAttribute(someAttribute)
+        '''
+        probabilidade a priori da classe
+        '''
+        pClPriori = self.probClass(someClass)
+        return float((pAtCl*pClPriori)/pAtPriori)
+
+    '''
+    probabilidade do atributo a priori
+    '''
+    def probAttribute(self, someAttribute):
+        pAtPriori = 0.0
+        for i in self.classes:
+            if self.attributes[i].has_key(someAttribute):
+                pAtPriori = pAtPriori + self.attributes[i][someAttribute]['prob']
+            else: 
+                pAtPriori = pAtPriori + self.probWithEstimator(someAttribute, i)
+        return pAtPriori
+
+    '''
+    probabilidade da classe a priori
+    '''
+    def probClass(self, someClass):
+        pClPriori = 0.0
+        for i in self.classes:
+            pClPriori = pClPriori + self.classes[i]['prob']
+        return pClPriori

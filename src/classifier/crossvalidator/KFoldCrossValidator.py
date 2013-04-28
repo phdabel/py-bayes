@@ -5,6 +5,7 @@ Created on 20/04/2013
 @author: Abel Corrêa
 '''
 from fileAssembler.FileAssembler import FileAssembler
+from classifier.bayes.NaiveBayes import NaiveBayes
 
 class KFoldCrossValidator(object):
     '''
@@ -102,9 +103,53 @@ class KFoldCrossValidator(object):
             ktmp = 0
             countClass = countClass + 1
     
-    
     '''
         Montar Matriz de Confusao
     '''
-    def __confusionMatrix__():
+    def __confusionMatrix__(self, instanciaTreino, instanciaTeste):
+        nbTreino = NaiveBayes(instanciaTreino)
+        nbTeste = NaiveBayes(instanciaTeste)
+        testClass = ''
+        trainClass = ''
+        vp = 0
+        vn = 0
+        fp = 0
+        fn = 0
+        rotulo = nbTreino.labelClassifier()
+        for a in nbTeste.vocabularySize:
+            if nbTeste.probClassGivenAttribute(rotulo, a) > 0.5 and nbTreino.probClassGivenAttribute(rotulo, a) > 0.5:
+                vp = vp + 1
+            elif nbTeste.probClassGivenAttribute(rotulo, a) <= 0.5 and nbTreino.probClassGivenAttribute(rotulo, a) > 0.5:
+                fp = fp + 1
+            elif nbTeste.probClassGivenAttribute(rotulo, a) > 0.5 and nbTreino.probClassGivenAttribute(rotulo, a) <= 0.5:
+                fn = fn +1
+            else:
+                vn = vn +1
+        print "______________"
+        print "---- P---N----"
+        print "P---%d---%d---"%(vp,fn)
+        print "N---%d---%d---"%(fp,vn)
+
         
+    '''
+    efetua validacao dos dados
+    e monta k matrizes de confusao
+    '''
+    def kFoldCrossValidate(self):
+        instanciaTreino = []
+        instanciaTeste = []
+        ct = 0
+        for cv in range(0,self.k):
+            for k in self.kFoldInstances:
+                for i in k:
+                    if cv != ct:
+                        #print "k - %d, i - %s"%(cv,i)
+                        instanciaTreino.append(i)
+                    else:
+                        instanciaTeste.append(i)
+                ct = ct + 1
+            ct = 0
+            print "Matriz de Confusão do Modelo "+str(cv + 1)
+            self.__confusionMatrix__(instanciaTreino, instanciaTeste)
+            instanciaTreino = []
+            instanciaTeste = []
