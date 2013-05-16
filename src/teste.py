@@ -9,9 +9,7 @@ from classifier.bayes.NaiveBayes import NaiveBayes
 if __name__ == '__main__':
     pass
     cv = KFoldCrossValidator(10)
-    #print cv.instanciasByClass['positivo']
-
+    nb = NaiveBayes()
+    
     cv.kFoldCrossValidate()
-    #for i in cv.kFoldInstances:
-    #    for instancia in i:
-    #        print instancia
+    

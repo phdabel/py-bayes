@@ -137,6 +137,22 @@ class NaiveBayes(object):
         return ((nkj)+(1.0))/(nj+m)
         #return ((nkj)+(((1.0)/len(self.attributes[someClass]))*m))/((nj)+(m))
     
+    
+    '''
+        probabilidade de uma classe dada uma instancia inteira
+    '''
+    def probClassGivenInstance(self, someClass, someInstance):
+        num = 1.0
+        pAtrAp = 1.0
+        for instanceAttribute in someInstance:
+            #instanceAttribute = someInstance[someClass][i]
+            num = num * self.probWithEstimator(instanceAttribute, someClass)
+            pAtrAp = pAtrAp * self.probAttribute(instanceAttribute)
+        res = 0.0
+        res = (num * self.classes[someClass]['prob']) / pAtrAp
+        return res
+    
+    
     '''
         probabilidade de uma classe dado um attributo
     '''

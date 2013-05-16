@@ -116,15 +116,15 @@ class KFoldCrossValidator(object):
         fp = 0
         fn = 0
         rotulo = nbTreino.labelClassifier()
-        for a in nbTeste.vocabularySize:
-            if nbTeste.probClassGivenAttribute(rotulo, a) > 0.5 and nbTreino.probClassGivenAttribute(rotulo, a) > 0.5:
+        for a in nbTeste.instancias:#nbTeste.instancias:
+            if nbTeste.probClassGivenInstance(rotulo, a[0]) > 0.5 and nbTreino.probClassGivenInstacne(rotulo, a[0]) > 0.5:
                 vp = vp + 1
-            elif nbTeste.probClassGivenAttribute(rotulo, a) <= 0.5 and nbTreino.probClassGivenAttribute(rotulo, a) > 0.5:
+            elif nbTeste.probClassGivenInstance(rotulo, a[0]) <= 0.5 and nbTreino.probClassGivenInstance(rotulo, a[0]) > 0.5:
                 fp = fp + 1
-            elif nbTeste.probClassGivenAttribute(rotulo, a) > 0.5 and nbTreino.probClassGivenAttribute(rotulo, a) <= 0.5:
-                fn = fn +1
+            elif nbTeste.probClassGivenInstance(rotulo, a[0]) > 0.5 and nbTreino.probClassGivenInstance(rotulo, a[0]) <= 0.5:
+                fn = fn + 1
             else:
-                vn = vn +1
+                vn = vn + 1
         print "______________"
         print "---- P---N----"
         print "P---%d---%d---"%(vp,fn)
