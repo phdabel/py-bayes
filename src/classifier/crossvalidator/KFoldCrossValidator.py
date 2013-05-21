@@ -86,18 +86,20 @@ class KFoldCrossValidator(object):
         '''
         for c in self.instanciasByClass:
             count.append(0)
-            length.append(float(len(self.instanciasByClass[c]))/self.k)
+            length.append(float((len(self.instanciasByClass[c]))/self.k) - 1)
         countClass = 0
         '''
             montagem das amostras em cada k-fold
         '''
         for c in self.instanciasByClass:
             for i in self.instanciasByClass[c]:
-                if count[countClass] < length[countClass]:
+                if count[countClass] < int(length[countClass]):
+                    #print "contaClass %d"%(count[countClass])
+                    #print "class %s - kfold %d, %d < %d "%(str(c),ktmp,count[countClass],int(length[countClass]))
                     self.kFoldInstances[ktmp].append([self.instanciasByClass[c][i],[str(c)]])
-                    #print "fold %d, classe - %s, amostra - %s"%(ktmp,c,self.instanciasByClass[c][i])
                     count[countClass] = count[countClass] + 1
                 else:
+                    self.kFoldInstances[ktmp].append([self.instanciasByClass[c][i],[str(c)]])
                     ktmp = ktmp + 1
                     count[countClass] = 0
             ktmp = 0
@@ -115,22 +117,28 @@ class KFoldCrossValidator(object):
         vn = 0
         fp = 0
         fn = 0
-        rotulo = nbTreino.labelClassifier()
-        for a in nbTeste.instancias:#nbTeste.instancias:
-            if nbTeste.probClassGivenInstance(rotulo, a[0]) > 0.5 and nbTreino.probClassGivenInstacne(rotulo, a[0]) > 0.5:
-                vp = vp + 1
-            elif nbTeste.probClassGivenInstance(rotulo, a[0]) <= 0.5 and nbTreino.probClassGivenInstance(rotulo, a[0]) > 0.5:
-                fp = fp + 1
-            elif nbTeste.probClassGivenInstance(rotulo, a[0]) > 0.5 and nbTreino.probClassGivenInstance(rotulo, a[0]) <= 0.5:
-                fn = fn + 1
-            else:
-                vn = vn + 1
-        print "______________"
-        print "---- P---N----"
-        print "P---%d---%d---"%(vp,fn)
-        print "N---%d---%d---"%(fp,vn)
-
+        rotulo = 'positivo'#nbTreino.labelClassifier()
+        #for a in nbTeste.instancias:
+        #    print nbTeste.probGivenInstance(a[0])
         
+        for a in nbTeste.instancias:
+            probTeste = a[1][0]
+            probTreino = nbTreino.probGivenInstance(a[0])
+            if (probTeste == rotulo and probTreino == rotulo):
+                vp = vp + 1
+            elif (probTeste != rotulo and probTreino != rotulo):
+                vn = vn + 1
+            elif (probTeste == rotulo and probTreino != rotulo):
+                fp = fp + 1
+            elif (probTeste != rotulo and probTreino == rotulo):
+                fn = fn + 1
+        print "  ______________"
+        print " |    P    N    "
+        print "P|    %d    %d    "%(vp,fn)
+        print "N|    %d    %d    "%(fp,vn)
+        print "  TTTTTTTTTTTTTT "
+        return [vp, vn, fp, fn]
+
     '''
     efetua validacao dos dados
     e monta k matrizes de confusao
@@ -138,18 +146,62 @@ class KFoldCrossValidator(object):
     def kFoldCrossValidate(self):
         instanciaTreino = []
         instanciaTeste = []
+        matrixValue = []
+        avgMatrix = [0,0,0,0]
         ct = 0
         for cv in range(0,self.k):
-            for k in self.kFoldInstances:
-                for i in k:
+            for kFold in self.kFoldInstances:
+                for i in kFold:
                     if cv != ct:
-                        #print "k - %d, i - %s"%(cv,i)
                         instanciaTreino.append(i)
                     else:
                         instanciaTeste.append(i)
                 ct = ct + 1
             ct = 0
             print "Matriz de Confusão do Modelo "+str(cv + 1)
-            self.__confusionMatrix__(instanciaTreino, instanciaTeste)
+            matrixValue.append(self.__confusionMatrix__(instanciaTreino, instanciaTeste))
+            avgMatrix[0] = avgMatrix[0] + matrixValue[cv][0]
+            avgMatrix[1] = avgMatrix[1] + matrixValue[cv][1]
+            avgMatrix[2] = avgMatrix[2] + matrixValue[cv][2]
+            avgMatrix[3] = avgMatrix[3] + matrixValue[cv][3]
             instanciaTreino = []
             instanciaTeste = []
+        avgMatrix[0] = float(avgMatrix[0]) / float(self.k)
+        avgMatrix[1] = float(avgMatrix[1]) / float(self.k)
+        avgMatrix[2] = float(avgMatrix[2]) / float(self.k)
+        avgMatrix[3] = float(avgMatrix[3]) / float(self.k)
+        vp = avgMatrix[0]
+        vn = avgMatrix[1]
+        fp = avgMatrix[2]
+        fn = avgMatrix[3]
+        devMatrix = [0.0,0.0,0.0,0.0]
+        for k in matrixValue:
+            devMatrix[0] = pow((k[0] - avgMatrix[0]),2)
+            devMatrix[1] = pow((k[1] - avgMatrix[1]),2)
+            devMatrix[2] = pow((k[2] - avgMatrix[2]),2)
+            devMatrix[3] = pow((k[3] - avgMatrix[3]),2)
+        devMatrix[0] = devMatrix[0] / float((self.k - 1))
+        devMatrix[1] = devMatrix[1] / float((self.k - 1))
+        devMatrix[2] = devMatrix[2] / float((self.k - 1))
+        devMatrix[3] = devMatrix[3] / float((self.k - 1)) 
+        print "Matriz de Confusao media"
+        print "  ____________________"
+        print " |       P       N    "
+        print "P|      %.1f    %.1f    "%(vp,fn)
+        print "N|      %.1f    %.1f    "%(fp,vn)
+        print "  TTTTTTTTTTTTTTTTTTT "
+        print "Desvio Padrao"
+        print "dvp - %.2f"%(devMatrix[0])
+        print "dvn - %.2f"%(devMatrix[1])
+        print "dfp - %.2f"%(devMatrix[2])
+        print "dfn - %.2f"%(devMatrix[3])
+        p = vp / (vp + fp)
+        print "Precisao - %.2f"%(p)
+        tvp = vp / (vp + fn)
+        print "TVP - %.2f"%(tvp)
+        tfp = fp / (fp + vn)
+        print "TFP - %.2f"%(tfp)
+        #tvn = vn / (fp + vn)
+        #print "TVN - %.2f"%(tvn)
+        f = (2*p*tvp) / (p+tvp)
+        print "Medida - F = %.2f"%(f)

@@ -10,11 +10,11 @@ from fileAssembler.constants import *
 if __name__ == '__main__':
     pass
     #diretorio pode ser POSITIVE_DIR ou NEGATIVE_DIR
-    for p in range(0,450):
+    for p in range(0,449):
         arquivo = POSITIVE_DIR +str(p)+".txt"
         data = FileAssembler.readClassFiles(FileAssembler, arquivo, 'positivo')
         FileAssembler.writeDataFile(FileAssembler, data)
-    for n in range(0,230):
+    for n in range(0,229):
         arquivo = NEGATIVE_DIR +str(n)+".txt"
         data = FileAssembler.readClassFiles(FileAssembler, arquivo, 'negativo')
         FileAssembler.writeDataFile(FileAssembler, data)

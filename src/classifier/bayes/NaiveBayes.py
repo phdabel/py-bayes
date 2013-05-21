@@ -30,7 +30,7 @@ class NaiveBayes(object):
     estimator = None
     
     
-    def __init__(self, instancias=None):
+    def __init__(self, instancias):
         self.__defineInstances__(instancias)
         self.__classProbability__()
         self.__attributesProbability__()
@@ -40,12 +40,12 @@ class NaiveBayes(object):
         Metodo privado da classe
         define as instancias contidas no arquivo para a variavel instancias da Classe NayveBayes.
     '''    
-    def __defineInstances__(self, instancias=None):
-        if(instancias == None):
-            for line in FileAssembler.readDataFile(FileAssembler).readlines():
-                self.instancias.append(eval(line))
-        else:
-            self.instancias = instancias
+    def __defineInstances__(self, instancias):
+        #if(instancias == None):
+        #    for line in FileAssembler.readDataFile(FileAssembler).readlines():
+        #        self.instancias.append(eval(line))
+        #else:
+        self.instancias = instancias
 
     '''
         define as probabilidades das classes e armazena no vetor classes
@@ -108,13 +108,20 @@ class NaiveBayes(object):
     '''
     def labelClassifier(self):
         if self.labelNB == {}:
+            for i in self.instancias:
+                if not self.labelNB.has_key(i[1][0]):
+                    self.labelNB[i[1][0]] = (0.0)
+                for attributes in i[0]:
+                    self.labelNB[i[1][0]] = self.labelNB[i[1][0]] + (math.log(self.probWithEstimator(attributes, i[1][0])))
+                self.labelNB[i[1][0]] = self.labelNB[i[1][0]] * (math.log(self.classes[i[1][0]]['prob']))
+            '''   
             for classes in self.attributes:
                 if not self.labelNB.has_key(classes):
                     self.labelNB[classes] = (0.0)
                 for attributes in self.attributes[classes]:
                     self.labelNB[classes] = self.labelNB[classes] + (math.log(self.probWithEstimator(attributes, classes)))
                 self.labelNB[classes] = self.labelNB[classes] * (math.log(self.classes[classes]['prob']))
-        
+            '''
         return ARGMAX(self.labelNB)
                     
     '''
@@ -137,7 +144,17 @@ class NaiveBayes(object):
         return ((nkj)+(1.0))/(nj+m)
         #return ((nkj)+(((1.0)/len(self.attributes[someClass]))*m))/((nj)+(m))
     
-    
+    def probGivenInstance(self, someInstance):
+        classeTmp = ""
+        for classe in self.classes:
+            if(classeTmp != ""):
+                if(self.probClassGivenInstance(classe, someInstance) > self.probClassGivenInstance(classeTmp, someInstance)):
+                    classeTmp = classe
+            else:
+                classeTmp = classe
+        return classeTmp
+            
+        
     '''
         probabilidade de uma classe dada uma instancia inteira
     '''
