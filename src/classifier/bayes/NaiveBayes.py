@@ -30,8 +30,11 @@ class NaiveBayes(object):
     estimator = None
     
     
-    def __init__(self, instancias):
-        self.__defineInstances__(instancias)
+    def __init__(self, instancias=None):
+        if(instancias == None):
+            self.__defineInstances__()
+        else:
+            self.__defineInstances__(instancias)
         self.__classProbability__()
         self.__attributesProbability__()
         self.__getAttributes__()
@@ -40,12 +43,12 @@ class NaiveBayes(object):
         Metodo privado da classe
         define as instancias contidas no arquivo para a variavel instancias da Classe NayveBayes.
     '''    
-    def __defineInstances__(self, instancias):
-        #if(instancias == None):
-        #    for line in FileAssembler.readDataFile(FileAssembler).readlines():
-        #        self.instancias.append(eval(line))
-        #else:
-        self.instancias = instancias
+    def __defineInstances__(self, instancias=None):
+        if(instancias == None):
+            for line in FileAssembler.readDataFile(FileAssembler).readlines():
+                self.instancias.append(eval(line))
+        else:
+            self.instancias = instancias
 
     '''
         define as probabilidades das classes e armazena no vetor classes
