@@ -134,8 +134,8 @@ class KFoldCrossValidator(object):
                 fn = fn + 1
         print "  ______________"
         print " |    P    N    "
-        print "P|    %d    %d    "%(vp,fn)
-        print "N|    %d    %d    "%(fp,vn)
+        print "P|    %d    %d    "%(vp,vn)
+        print "N|    %d    %d    "%(fp,fn)
         print "  TTTTTTTTTTTTTT "
         return [vp, vn, fp, fn]
 
@@ -187,8 +187,8 @@ class KFoldCrossValidator(object):
         print "Matriz de Confusao media"
         print "  ____________________"
         print " |       P       N    "
-        print "P|      %.1f    %.1f    "%(vp,fn)
-        print "N|      %.1f    %.1f    "%(fp,vn)
+        print "P|      %.1f    %.1f    "%(vp,vn)
+        print "N|      %.1f    %.1f    "%(fp,fn)
         print "  TTTTTTTTTTTTTTTTTTT "
         print "Desvio Padrao"
         print "dvp - %.2f"%(devMatrix[0])
